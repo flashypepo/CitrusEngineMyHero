@@ -1,0 +1,32 @@
+﻿hero.swf Movie Report
+----------------------
+
+Frame #    Frame Bytes    Total Bytes    Scene
+-------    -----------    -----------    -----
+      1           5153           5153    Scene 1 (AS 3.0 Classes Export Frame)
+
+Scene      Shape Bytes    Text Bytes    ActionScript Bytes
+-------    -----------    ----------    ------------------
+Scene 1              0             0                     0
+
+Symbol        Shape Bytes    Text Bytes    ActionScript Bytes
+----------    -----------    ----------    ------------------
+body                  165             0                     0
+eye                    35             0                     0
+eye blink              33             0                     0
+eye close              21             0                     0
+face                    0             0                     0
+Larm                   39             0                     0
+Leg                    30             0                     0
+mouth                  46             0                     0
+mouth open             41             0                     0
+Rarm                   38             0                     0
+duck                    0             0                     0
+hurt                    0             0                     0
+idle                    0             0                     0
+jump                    0             0                     0
+walk                    0             0                     0
+
+
+
+
