@@ -43,6 +43,7 @@ package {
 		public function CitrusEditor() {
 			setUpStarling(true);
 			//* 2014_0814 eigen level-loader, more re-usable... 
+			//2014_0817: loadLevel("../levels/level1.swf");
 			loadLevel("../levels/level1.swf");
 			/*/
 			loader = new Loader();
@@ -51,10 +52,12 @@ package {
 			//*/
 		}
 		
-		protected function onLoad(e:Event):void
-		{
-			// ??? state = new Level1(loader.content);
+		protected function onLoad(e:Event):void {
+			trace("level"+_level+" about to load ...");
 			switch (_level) {
+				/*case 0:
+					state = new Level0(e.target.loader.content);
+					break;   */
 				case 1:
 					state = new Level1(e.target.loader.content);
 					break;
