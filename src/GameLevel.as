@@ -23,13 +23,17 @@ package {
 	import citrus.objects.platformer.box2d.Sensor;
 	import citrus.physics.box2d.Box2D;
 	import citrus.physics.box2d.Box2DUtils;
-	import citrus.utils.objectmakers.ObjectMaker2D;
+	//import citrus.utils.objectmakers.ObjectMaker2D;
+	import citrus.utils.objectmakers.ObjectMakerStarling;
 	import citrus.view.ACitrusCamera;
 	import citrus.view.starlingview.StarlingArt;
 	import citrus.view.starlingview.StarlingCamera;
 	
 	import dragonBones.Armature;
 	import dragonBones.factorys.StarlingFactory;
+	
+	import starling.textures.Texture;
+	import starling.textures.TextureAtlas;
 	
 	public class GameLevel extends StarlingState {
 		public static const LEVELNAME:String = "GameLevel"; // id of the level
@@ -91,8 +95,13 @@ package {
 			b2d.visible = false; // true: show enclosing box, false: show the graphics
 			add(b2d);
 			
+			/* 2014_0822 use level spritesheet (optimized) instead of level MovieClip ...
 			// turn level MovieClip into Citrus-level to use in the game...
 			ObjectMaker2D.FromMovieClip(level);
+			/*/
+			var lvlTex:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new R.lvl1Sprites()), new XML(new R.lvl1SpritesXML()) );
+			ObjectMakerStarling.FromMovieClip(level, lvlTex);
+			//*/
 			
 			// create our hero from SWF-file...
 			// hero.swf: hero = new Hero("hero", {x:heroStartX, y:heroStartY, width:66, height:92, view:"../sprites/hero.swf"});

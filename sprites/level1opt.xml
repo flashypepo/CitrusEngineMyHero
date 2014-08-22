@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="level1opt">
+	<!-- Created with Adobe Flash Professional version 14.0.0.110 -->
+	<!-- http://www.adobe.com/products/flash.html -->
+	<SubTexture name="bush" x="401" y="844" width="70" height="26" pivotX="0" pivotY="0"/>
+	<SubTexture name="cloud_1" x="0" y="844" width="129" height="63" pivotX="0" pivotY="0"/>
+	<SubTexture name="cloud_2" x="131" y="844" width="128" height="63" pivotX="0" pivotY="0"/>
+	<SubTexture name="coin_gold" x="547" y="844" width="35" height="35" pivotX="0" pivotY="0"/>
+	<SubTexture name="coin_silver" x="401" y="872" width="35" height="35" pivotX="0" pivotY="0"/>
+	<SubTexture name="crate" x="0" y="909" width="70" height="70" pivotX="0" pivotY="0"/>
+	<SubTexture name="fence" x="144" y="909" width="70" height="61" pivotX="0" pivotY="0"/>
+	<SubTexture name="front" x="261" y="844" width="66" height="92" pivotX="0" pivotY="0"/>
+	<SubTexture name="grass" x="216" y="909" width="35" height="40" pivotX="0" pivotY="0"/>
+	<SubTexture name="ground" x="72" y="909" width="70" height="70" pivotX="0" pivotY="0"/>
+	<SubTexture name="plank" x="473" y="844" width="72" height="21" pivotX="0" pivotY="0"/>
+	<SubTexture name="skybox" x="0" y="0" width="3046" height="842" pivotX="0" pivotY="0"/>
+	<SubTexture name="slime" x="329" y="881" width="43" height="28" pivotX="0" pivotY="0"/>
+	<SubTexture name="spikes" x="329" y="844" width="70" height="35" pivotX="0" pivotY="0"/>
+</TextureAtlas>
