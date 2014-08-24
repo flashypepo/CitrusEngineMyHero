@@ -4,11 +4,11 @@
  * more... https://www.youtube.com/watch?v=h3gb5B0Fy3U&list=PLYtGhZ0r8VnNLMrD0KAhYI4TypvocCIEh
  * 
  * TODO:
- * 1: Character animation:
+ * √ 1: Character animation:
  *    - https://www.youtube.com/watch?v=rKSEyWo3Kds&list=PLYtGhZ0r8VnNLMrD0KAhYI4TypvocCIEh&index=2
  * 2: Sprite sheet animation:
  *    - https://www.youtube.com/watch?v=QC8mRAQkwEQ&list=PLYtGhZ0r8VnNLMrD0KAhYI4TypvocCIEh&index=3
- * 3: Citrus Level editor Optimized:
+ * √ 3: Citrus Level editor Optimized:
  *    - https://www.youtube.com/watch?v=xorPMmb1F90&index=5&list=PLYtGhZ0r8VnNLMrD0KAhYI4TypvocCIEh
  * 4: Citrus Engine with Particles:
  *    - https://www.youtube.com/watch?v=UErhy6xfopk&list=PLYtGhZ0r8VnNLMrD0KAhYI4TypvocCIEh&index=6

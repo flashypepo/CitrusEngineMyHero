@@ -14,6 +14,7 @@ package {
 	import Box2D.Dynamics.Contacts.b2PolygonContact;
 	
 	import citrus.core.starling.StarlingState;
+	import citrus.objects.CitrusSprite;
 	import citrus.objects.platformer.box2d.Coin;
 	import citrus.objects.platformer.box2d.Crate;
 	import citrus.objects.platformer.box2d.Enemy;
@@ -23,7 +24,6 @@ package {
 	import citrus.objects.platformer.box2d.Sensor;
 	import citrus.physics.box2d.Box2D;
 	import citrus.physics.box2d.Box2DUtils;
-	//import citrus.utils.objectmakers.ObjectMaker2D;
 	import citrus.utils.objectmakers.ObjectMakerStarling;
 	import citrus.view.ACitrusCamera;
 	import citrus.view.starlingview.StarlingArt;
@@ -32,6 +32,7 @@ package {
 	import dragonBones.Armature;
 	import dragonBones.factorys.StarlingFactory;
 	
+	import starling.extensions.particles.PDParticleSystem;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 	
@@ -58,8 +59,32 @@ package {
 		private var factory:StarlingFactory;
 		private var arm:Armature;
 
+		//* ----- particle declarations and embedding ----------
+		
+		// hero dragonbones spritesheet...
 		[Embed(source="../sprites/dragon.png", mimeType="application/octet-stream")]
 		private var heroDragon:Class;
+		
+		// atmosphere PEX-file... particles
+		[Embed(source="../particles/atmo.pex", mimeType="application/octet-stream")]
+		private var atmoPex:Class;
+
+		// particle PEX-file... particles
+		[Embed(source="../particles/particle.pex", mimeType="application/octet-stream")]
+		private var partPex:Class;
+
+		// texture image... particles
+		[Embed(source="../particles/texture.png")]
+		private var partTex:Class;
+		
+		private var heroPart:PDParticleSystem;
+		private var flame:CitrusSprite;
+		
+		private var atmoPart:PDParticleSystem;
+		private var atmo:CitrusSprite;
+
+
+		//* ----- endof particle declarations and embedding ----------
 		
 		public function GameLevel(lvl:MovieClip = null) {
 			trace("GameLevel constructor entered...lvl=" + lvl);			
@@ -103,11 +128,30 @@ package {
 			ObjectMakerStarling.FromMovieClip(level, lvlTex);
 			//*/
 			
+			// 2014_0824 add particles
+			heroPart = new PDParticleSystem (XML(new partPex()), Texture.fromBitmap(new partTex()));
+			heroPart.start(); // start particles for-ever (=no arguments)
+			// we want particle BEHIND the hero, so it needs to be added BEFORE the add(hero)
+			// we also want it to be attached to the hero -> additions to update()
+			flame = new CitrusSprite("flame", {view:heroPart});
+			add(flame);
+			
+			// atmosphere particle...
+			atmoPart = new PDParticleSystem (XML(new atmoPex()), Texture.fromBitmap(new partTex()));
+			atmoPart.start(); // start particles for-ever (=no arguments)
+			
+			
 			// create our hero from SWF-file...
 			// hero.swf: hero = new Hero("hero", {x:heroStartX, y:heroStartY, width:66, height:92, view:"../sprites/hero.swf"});
 			// 2014_0818 hero dragonbones - must be in GameLevel...
 			hero = new Hero("hero", {x:heroStartX, y:heroStartY, width:66, height:92, offsetX:33, offsetY:46, view:arm});
 			add(hero);
+			
+			// add atmo to scene with (high)parallax...
+			atmo = new CitrusSprite("atmo", {view:atmoPart, parallaxX:1.7, parallaxY:1.7});
+			add(atmo);
+			// move it to center of screen...
+			moveEmitter(atmo, stage.stageWidth >> 1, stage.stageHeight >> 1);
 			
 			// setup animation loops... i.a. repeat "idle"
 			StarlingArt.setLoopAnimations(["idle"]);
@@ -130,8 +174,17 @@ package {
 		override public function update(timeDelta:Number):void {
 			super.update(timeDelta);
 			if (reset) { resetHero(heroStartX, heroStartY); }
+			
+			// move flame to hero if it exists...
+			if (hero!= null) {moveEmitter(flame, hero.x, hero.y); }
 		}
 		
+		// helper method: move a CitrusSprite-object to position (x,y) ...
+		private function moveEmitter(sprite:CitrusSprite, x:int, y:int):void {
+			// casting is required...
+			(sprite.view as PDParticleSystem).emitterX = x;
+			(sprite.view as PDParticleSystem).emitterY = y;			
+		}
 		private function resetHero(x:int, y:int):void {
 			hero.x = x;
 			hero.y = y;
